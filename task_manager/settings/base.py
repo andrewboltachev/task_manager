@@ -8,7 +8,8 @@ INSTALLED_APPS = [
     # Third party
     "rest_framework",
     "drf_spectacular",
-    # "tasks",
+    # Project
+    "users",
 ]
 
 MIDDLEWARE = [
