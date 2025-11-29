@@ -13,3 +13,5 @@ CSRF_COOKIE_SECURE = True
 # Email (e.g., SMTP or AWS SES)
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # ... SMTP settings ...
+
+STATIC_ROOT = BASE_DIR / "static"
