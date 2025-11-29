@@ -7,22 +7,19 @@ from .models import Comment
 from .models import Task
 from .permissions import IsEditorOrReadOnly
 from .serializers import CommentSerializer
-from .serializers import TaskSerializer
+from .serializers import TaskDetailSerializer
+from .serializers import TaskListSerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    """
-    CRUD for Tasks.
-    - Filtering: status, assignee
-    - Ordering: created_at
-    - Search: title, description
-    """
-
+    # We optimize the queryset to prefetch comments only when needed,
+    # but for simplicity in get_serializer_class logic, we usually select globally
+    # or override get_queryset.
+    # Here we select basics.
     queryset = Task.objects.select_related("creator", "assignee").all()
-    serializer_class = TaskSerializer
+
     permission_classes = [permissions.IsAuthenticated, IsEditorOrReadOnly]
 
-    # Built-in DRF filtering tools
     filter_backends = [
         DjangoFilterBackend,
         filters.SearchFilter,
@@ -33,9 +30,28 @@ class TaskViewSet(viewsets.ModelViewSet):
     ordering_fields = ["created_at", "updated_at", "status"]
     ordering = ["-created_at"]
 
+    def get_serializer_class(self):
+        """
+        Switch serializers based on the action.
+        """
+        if self.action == "list":
+            return TaskListSerializer
+        # For retrieve, create, update, etc., return the detailed view
+        # so the user sees the immediate result including comments (if any)
+        return TaskDetailSerializer
+
     def perform_create(self, serializer):
-        # Automatically set the creator to the current user
         serializer.save(creator=self.request.user)
+
+    def get_queryset(self):
+        """
+        Optional Optimization:
+        Only prefetch comments if we are actually retrieving details.
+        """
+        queryset = super().get_queryset()
+        if self.action == "retrieve":
+            return queryset.prefetch_related("comments__author")
+        return queryset
 
 
 class CommentViewSet(viewsets.ModelViewSet):
