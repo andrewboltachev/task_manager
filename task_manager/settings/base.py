@@ -10,6 +10,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # Project
     "users",
+    "tasks",
 ]
 
 MIDDLEWARE = [
