@@ -25,7 +25,7 @@ COPY pyproject.toml uv.lock ./
 
 # Install dependencies
 # uv will detect $VIRTUAL_ENV and install packages there.
-RUN uv sync --frozen --no-dev --no-install-project
+RUN uv sync --frozen --no-dev --no-install-project --group prod
 
 # Copy the rest of the application code
 COPY . .
@@ -33,7 +33,7 @@ COPY . .
 # Install the project itself (if needed, or just rely on source copy)
 # This step ensures that if your project is a package, it's installed.
 # If not, you can skip this, but it's good practice.
-RUN uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev --group prod
 
 # Collect static files
 # Now 'python' resolves to '/app/.venv/bin/python' which has Django

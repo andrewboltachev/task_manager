@@ -14,7 +14,7 @@ services:
       - .:/app
     
     environment:
-      DJANGO_ENV: development
+      DJANGO_ENV: dev
       # Note: 'db' is the hostname inside Docker network
       DATABASE_URL: postgres://tasks_user:tasks_password@db:5432/task_manager
       DEBUG: "True"
