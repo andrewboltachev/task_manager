@@ -1,14 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters
-from rest_framework import permissions
-from rest_framework import viewsets
+from rest_framework import filters, permissions, viewsets
 
-from .models import Comment
-from .models import Task
+from .models import Comment, Task
 from .permissions import IsEditorOrReadOnly
-from .serializers import CommentSerializer
-from .serializers import TaskDetailSerializer
-from .serializers import TaskListSerializer
+from .serializers import CommentSerializer, TaskDetailSerializer, TaskListSerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):

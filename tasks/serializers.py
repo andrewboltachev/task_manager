@@ -1,9 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from .models import Comment
-from .models import Task
-
+from .models import Comment, Task
 
 User = get_user_model()
 

@@ -1,0 +1,76 @@
+[project]
+name = "task_manager"
+version = "0.0.1"
+description = "Django + DRF Task Manager App"
+authors = [
+    {name = "Andrei Boltachev", email = "andrewboltachev@gmail.com"}
+]
+requires-python = ">=3.12"
+
+# -------------------------------------------------------------------
+# Main Dependencies
+# -------------------------------------------------------------------
+dependencies = [
+    "asgiref~=3.11.0",
+    "Django~=5.2.8",
+    "django-environ~=0.12.0",
+    "django-filter~=25.2",
+    "django-split-settings~=1.2.0",
+    "djangorestframework~=3.15.2",
+    "djangorestframework_simplejwt~=5.5.1",
+    "drf-spectacular~=0.29.0",
+    "psycopg2-binary~=2.9.11",
+    "requests~=2.32.5",
+    "python-dotenv~=1.2.1",
+]
+
+# -------------------------------------------------------------------
+# Dependency Groups
+# -------------------------------------------------------------------
+[dependency-groups]
+
+# Development Dependencies
+dev = [
+    # Testing
+    "pytest~=8.3.0",
+    "pytest-django~=4.9.0",
+    "factory-boy~=3.3.1",
+    # Linting/Formatting
+    "ruff~=0.7.1",
+    # Utils
+    "ipdb",
+    "django-extensions>=4.1",
+]
+
+# Production Dependencies
+prod = [
+    "gunicorn~=23.0.0",
+]
+
+# -------------------------------------------------------------------
+# Tool Configuration
+# -------------------------------------------------------------------
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "E",  # Error
+    "F",  # Pyflakes
+    "I",  # isort (Ruff's implementation)
+    "B",  # Bugbear
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore F403 (Wildcard import), F405 (Undefined export), and F821 (Undefined name)
+"**/settings/*.py" = ["F403", "F405", "F821"]
+"**/settings/environments/*.py" = ["F821"]
+
+# -------------------------------------------------------------------
+# Pytest Configuration
+# -------------------------------------------------------------------
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "task_manager.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+# Add the local directory to python path so tests can find apps easily
+pythonpath = ["."]

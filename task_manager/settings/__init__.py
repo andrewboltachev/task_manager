@@ -1,8 +1,6 @@
 from os import environ
 
 from split_settings.tools import include
-from split_settings.tools import optional
-
 
 ENV = environ.get("DJANGO_ENV", "dev")
 

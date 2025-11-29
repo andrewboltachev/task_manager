@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import Comment
-from .models import Task
+from .models import Comment, Task
 
 
 @admin.register(Task)
