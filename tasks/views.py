@@ -5,7 +5,7 @@ from rest_framework import viewsets
 
 from .models import Comment
 from .models import Task
-from .permissions import IsCreatorOrReadOnly
+from .permissions import IsEditorOrReadOnly
 from .serializers import CommentSerializer
 from .serializers import TaskSerializer
 
@@ -20,7 +20,7 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     queryset = Task.objects.select_related("creator", "assignee").all()
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated, IsCreatorOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsEditorOrReadOnly]
 
     # Built-in DRF filtering tools
     filter_backends = [
@@ -45,7 +45,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     queryset = Comment.objects.select_related("author", "task").all()
     serializer_class = CommentSerializer
-    permission_classes = [permissions.IsAuthenticated, IsCreatorOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated, IsEditorOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["task"]  # Allow getting comments for specific task
 

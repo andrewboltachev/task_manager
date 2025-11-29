@@ -33,9 +33,7 @@ class TaskSerializer(serializers.ModelSerializer):
         queryset=User.objects.all(), required=False, allow_null=True, write_only=True
     )
 
-    # Show comments nested in the task detail?
-    # Or keep it separate? For a simple app, separate is usually better for performance,
-    # but let's add a link or count.
+    # Show comments count
     comments_count = serializers.IntegerField(source="comments.count", read_only=True)
 
     class Meta:

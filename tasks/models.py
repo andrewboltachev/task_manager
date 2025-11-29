@@ -35,8 +35,8 @@ class Task(models.Model):
     def __str__(self):
         return self.title
 
-    def get_owner(self):
-        return self.creator
+    def get_editors(self):
+        return [self.creator, self.assignee]
 
 
 class Comment(models.Model):
@@ -48,5 +48,5 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment by {self.author} on {self.task}"
 
-    def get_owner(self):
-        return self.author
+    def get_editors(self):
+        return [self.author, *self.task.get_editors()]
