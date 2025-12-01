@@ -1,0 +1,16 @@
+services:
+  web:
+    # Stops permission errors
+    user: root 
+    
+    command: sh -c "uv sync && python manage.py runserver 0.0.0.0:8000"
+    
+    # Mount source code
+    volumes:
+      - .:/app
+      - /app/.venv
+    
+    # Add/Override specific env vars
+    environment:
+      DJANGO_ENV: dev
+      DEBUG: "True"

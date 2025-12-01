@@ -70,7 +70,11 @@ select = [
 # Pytest Configuration
 # -------------------------------------------------------------------
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "task_manager.settings"
-python_files = ["tests.py", "test_*.py", "*_tests.py"]
 # Add the local directory to python path so tests can find apps easily
 pythonpath = ["."]
+DJANGO_SETTINGS_MODULE = "task_manager.settings"
+# This tells Django to load settings/environments/testing.py
+env = [
+    "DJANGO_ENV=test"
+]
+python_files = ["tests.py", "test_*.py", "*_tests.py"]

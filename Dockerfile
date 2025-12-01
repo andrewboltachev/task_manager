@@ -30,6 +30,9 @@ RUN uv sync --frozen --no-dev --no-install-project --group prod
 # Copy the rest of the application code
 COPY . .
 
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 # Install the project itself (if needed, or just rely on source copy)
 # This step ensures that if your project is a package, it's installed.
 # If not, you can skip this, but it's good practice.
@@ -41,10 +44,14 @@ RUN SECRET_KEY=dummy python manage.py collectstatic --noinput
 
 # Create a non-root user
 RUN adduser --disabled-password --gecos '' appuser
+RUN chown -R appuser:appuser /app/.venv
 USER appuser
 
 # Expose port
 EXPOSE 8000
+
+# Set the Entrypoint
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 # Command to run
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "task_manager.wsgi:application"]

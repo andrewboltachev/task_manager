@@ -1,0 +1,7 @@
+services:
+  web:
+    # Uses Dockerfile CMD (Gunicorn)
+    restart: always
+    
+    environment:
+      DJANGO_ENV: prod

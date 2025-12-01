@@ -1,0 +1,22 @@
+# Ignore the virtual environment
+.venv
+venv
+ENV
+
+# Ignore git history (reduces build size significantly)
+.git
+.gitignore
+
+# Ignore Python cache artifacts
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE settings
+.idea
+.vscode
+.start_data
+
+# Ignore local environment variables (Safety)
+.env
