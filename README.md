@@ -6,7 +6,7 @@ A robust, containerized REST API for task management, built with Django, DRF, an
 
 ```bash
 cp .env.example .env
-make dev # will be running...
+make dev # launch, wait till "web-1" will be up
 
 make test # in other window (should pass)
 ```
