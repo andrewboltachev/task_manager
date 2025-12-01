@@ -10,6 +10,10 @@ bash:
 test:
 	docker compose -f docker-compose.base.yml -f docker-compose.dev.yml exec web pytest --reuse-db
 
+# Format and fix
+ruff:
+	docker compose -f docker-compose.base.yml -f docker-compose.dev.yml exec web ruff check --fix
+
 # Run in Prod mode
 prod:
 	docker compose -f docker-compose.base.yml -f docker-compose.prod.yml up --build
