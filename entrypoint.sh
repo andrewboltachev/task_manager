@@ -6,6 +6,7 @@ set -e
 export PATH=/app/.venv/bin/:$PATH
 
 uv sync
+uv sync --group $DJANGO_ENV
 
 # The DB is guaranteed to be ready here because of Docker 'service_healthy'
 
