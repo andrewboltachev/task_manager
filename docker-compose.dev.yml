@@ -3,7 +3,7 @@ services:
     # Stops permission errors
     user: root 
     
-    command: sh -c "uv sync && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "uv sync --dev && python manage.py runserver 0.0.0.0:8000"
     
     # Mount source code
     volumes:
