@@ -65,9 +65,9 @@ This project uses a `Makefile` to simplify Docker Compose operations.
 | Command | Description |
 | :--- | :--- |
 | **`make dev`** | Starts the application in **Development Mode** (Hot-reload, Debug=True). |
-| **`make test`** | Runs the full **Pytest** suite inside the container using the test database. |
+| **`make test`** | (Works when `make dev` runs) Runs the full **Pytest** suite inside the container using the test database. |
+| **`make ruff`** | (Works when `make dev` runs) Runs **Ruff** to lint and auto-fix code style issues. |
 | **`make bash`** | Opens a bash shell inside the running `web` container. |
-| **`make ruff`** | Runs **Ruff** to lint and auto-fix code style issues. |
 | **`make prod`** | Simulates a **Production Build** (Gunicorn, Debug=False, static files collected). |
 | **`make down`** | Stops all containers and removes networks. |
 
