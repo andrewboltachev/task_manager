@@ -1,5 +1,6 @@
 import factory
 from django.contrib.auth import get_user_model
+
 from tasks.models import Task
 
 User = get_user_model()

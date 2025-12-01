@@ -1,9 +1,15 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, permissions, viewsets
+from rest_framework.pagination import LimitOffsetPagination
 
 from .models import Comment, Task
 from .permissions import IsEditorOrReadOnly
 from .serializers import CommentSerializer, TaskDetailSerializer, TaskListSerializer
+
+
+class TaskPagination(LimitOffsetPagination):
+    default_limit = 10
+    max_limit = 100
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -14,6 +20,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.select_related("creator", "assignee").all()
 
     permission_classes = [permissions.IsAuthenticated, IsEditorOrReadOnly]
+    pagination_class = TaskPagination
 
     filter_backends = [
         DjangoFilterBackend,

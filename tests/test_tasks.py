@@ -1,7 +1,9 @@
 import pytest
 from django.urls import reverse
 from rest_framework import status
+
 from tests.factories import TaskFactory, UserFactory
+
 
 @pytest.mark.django_db
 class TestTaskOperations:

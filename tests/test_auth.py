@@ -1,14 +1,14 @@
 import pytest
+from django.contrib.auth import get_user_model
 from django.urls import reverse
 from rest_framework import status
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
 # This marker ensures DB access is allowed
 @pytest.mark.django_db
 def test_register_user(api_client):
-    url = reverse('auth_register') # Ensure this matches your urls.py name
+    url = reverse('auth_register-list') # Ensure this matches your urls.py name
     data = {
         'username': 'newuser',
         'email': 'new@test.com',
