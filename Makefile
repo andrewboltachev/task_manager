@@ -2,9 +2,13 @@
 dev:
 	docker compose -f docker-compose.base.yml -f docker-compose.dev.yml up --build
 
-# Run tests
+# Launch shell
 bash:
 	docker compose -f docker-compose.base.yml -f docker-compose.dev.yml exec web bash
+
+# Run tests
+test:
+	docker compose -f docker-compose.base.yml -f docker-compose.dev.yml exec web pytest --reuse-db
 
 # Run in Prod mode
 prod:
