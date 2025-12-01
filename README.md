@@ -2,6 +2,15 @@
 
 A robust, containerized REST API for task management, built with Django, DRF, and modern Python tooling (`uv`, `ruff`, `pytest`).
 
+## ⏱️ Quick Test
+
+```bash
+cp .env.example .env
+make dev # will be running...
+
+make test # in other window (should pass)
+```
+
 ## 🚀 Features
 
 *   **Task Management:** Create, read, update, and delete tasks.
