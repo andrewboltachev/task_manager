@@ -27,4 +27,5 @@ urlpatterns = [
     # 4. Apps (Versioned API)
     path("api/v1/users/", include("users.urls")),
     path("api/v1/tasks/", include("tasks.urls")),
+    path("api/v1/orders/", include("orders.urls")),
 ]

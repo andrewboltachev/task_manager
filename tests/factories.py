@@ -1,6 +1,7 @@
 import factory
 from django.contrib.auth import get_user_model
 
+from orders.models import Order
 from tasks.models import Task
 
 User = get_user_model()
@@ -20,6 +21,16 @@ class UserFactory(factory.django.DjangoModelFactory):
 class TaskFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Task
+
+    title = factory.Faker('sentence', nb_words=4)
+    description = factory.Faker('text')
+    status = 'new'
+    # SubFactory means "Create a User automatically if one isn't provided"
+    creator = factory.SubFactory(UserFactory)
+
+class OrderFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Order
 
     title = factory.Faker('sentence', nb_words=4)
     description = factory.Faker('text')

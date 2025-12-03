@@ -11,6 +11,7 @@ INSTALLED_APPS = [
     # Project
     "users",
     "tasks",
+    "orders",
 ]
 
 MIDDLEWARE = [
